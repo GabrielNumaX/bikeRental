@@ -1,0 +1,24 @@
+#Customer
+#see available bikes
+#rent per hour $5
+#rent per day $20
+#rent per week $60
+#family rental, 3 to 5 rentals (any type) 30% discount total price
+
+#Rental shop
+#bill when customer returns bike
+#display inventory
+#take requests on hour, day, week by verifying stock
+
+vas a un local a alquilar bicicletas, te atienden y te muestran las bicicletas y t dicen el tipo de alquileres y precios
+elegis, haces el papel, te vas volves y pagas.
+
+el cliente elije la bicicleta el tipo de alquiler y hace el papel.
+
+Interactuarian dos clases Rental y Customer
+
+Rental tiene las bicicletas y los precios y tipos de renta y para hacer el papel
+
+Customer hereda de rental para tener acceso a l
+
+Objeto Customer elije bicicleta, tipo de rental y cantidad
