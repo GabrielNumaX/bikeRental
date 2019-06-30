@@ -42,22 +42,27 @@ class Rental:
 
 		elif self.rentalType == "day" and self.family == False:
 			bill = self.rentalQty * 20
+			Rental.bikes += self.rentalQty
 			return "{}'s bill is ${}.".format(self.customerName, bill)
 
 		elif self.rentalType == "week" and self.family == False:
 			bill = self.rentalQty * 60
+			Rental.bikes += self.rentalQty
 			return "{}'s bill is ${}.".format(self.customerName, bill)
 
 		elif self.rentalType == "hour" and self.family == True:
 			bill = (self.rentalQty * 5) * 0.7
+			Rental.bikes += self.rentalQty
 			return "{}'s bill is ${}.".format(self.customerName, bill)
 
 		elif self.rentalType == "day" and self.family == True:
 			bill = (self.rentalQty * 20) * 0.7
+			Rental.bikes += self.rentalQty
 			return "{}'s bill is ${}.".format(self.customerName, bill)
 
 		elif self.rentalType == "week" and self.family == True:
 			bill = (self.rentalQty * 60) * 0.7
+			Rental.bikes += self.rentalQty
 			return "{}'s bill is ${}.".format(self.customerName, bill)
 
 		else:
@@ -66,31 +71,32 @@ class Rental:
 		#I did the rentalBill with it's conditions first
 		#then I implemented checkFamily to set true or false
 
-		#when I try to execute this method it gives me an error see line 105
-		def takeRequest(self, name, request, requestType):
-			if request > Rental.bikes:
-				Rental.bikes -= request
-				self.customerName = name
-				self.rentalQty=request
-				self.rentalType = requestType
+	def takeRequest(self, name, request, requestType):
+		if request < Rental.bikes:
+			Rental.bikes -= request
+			self.customerName = name
+			self.rentalQty = request
+			self.rentalType = requestType
 
-				return "{}'s requests {} bikes on {} rate".format(name, request, requestType)
-			else:
-				return "Not enough bikes to process request"
+			return "{}'s requests {} bikes on {} rate".format(name, request, requestType)
+		else:
+			return "Not enough bikes to process request"
 
 		
 
-customer1=Rental("gabo", "hour", 2)
+print(Rental.checkBikes())
 
-customer2=Rental("juan", "day", 3)
-
-customer3=Rental("pedro", "week", 6)
+customer1=Rental("rama", "hour", 2)
 
 print(customer1.customerName,customer1.rentalType ,customer1.rentalQty)
 
+print(customer1.rentalBill())
+
 print(Rental.checkBikes())
 
-print(customer1.rentalBill())
+customer2=Rental("juan", "day", 3)
+
+print(customer2.customerName,customer2.rentalType ,customer2.rentalQty)
 
 print(Rental.checkBikes())
 
@@ -98,12 +104,16 @@ print(customer2.rentalBill())
 
 print(Rental.checkBikes())
 
+customer3=Rental("pedro", "week", 6)
+
+print(customer3.customerName,customer3.rentalType ,customer3.rentalQty)
+
+print(Rental.checkBikes())
+
 print(customer3.rentalBill())
 
 print(Rental.checkBikes())
 
-#print(customer3.takeRequest("pedro", 20, "hour"))
-#when I execute this I get the following error 
-#AttributeError: 'Rental' object has no attribute 'takeRequest'
-#Don't undertand why?
+print(customer3.takeRequest("pedro", 20, "hour"))
 
+print(Rental.checkBikes())
